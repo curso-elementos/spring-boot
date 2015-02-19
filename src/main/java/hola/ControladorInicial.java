@@ -6,33 +6,10 @@
 package hola;
 
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-/**
- *
- * @author campitos
- */
-@Controller
 public class ControladorInicial {
-    
-@RequestMapping("/inicio")
-public String inicio(){
-    
-    return "inicio";
-}
 
-@RequestMapping("/")
-public String index(){
-    return "index";
-}
-@RequestMapping(value="/urita", method=RequestMethod.GET, headers={"Accept=text/html"})
-public @ResponseBody String servicio(){
-    
-    return "Que tal ehhh???";
 }
 
     
-}
+
