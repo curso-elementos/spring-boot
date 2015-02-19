@@ -12,5 +12,4 @@ package hola;
 
 public class Aplicacion {
 
-
 }
