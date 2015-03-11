@@ -6,6 +6,7 @@
 package hola;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,6 +21,13 @@ public class ControladorInicial {
         
         return "Bienvenido a mi primer servicios con spring";
     }
+    
+   @RequestMapping(value="/resultados", method=RequestMethod.GET)
+   public String miresultado(Model model){
+       Evaluacion e=new Evaluacion("Juan Carlos", 10);
+       model.addAttribute("yo", e);
+       return "presentacion";
+   }
 
 
     
