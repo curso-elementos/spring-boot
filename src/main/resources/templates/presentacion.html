@@ -14,5 +14,11 @@
     <body>
         <h1>Resultado de calificaciones</h1>
         <p th:text="${yo.nombre}">YO no tengo que verme</p> 
+        <script src="../static/js/jquery.js" th:src="@{/js/jquery.js}" />
+        <script>
+            $(document).ready(function(){
+                alert("estamos mas que listos");
+            });
+        </script>
     </body>
 </html>
