@@ -5,6 +5,7 @@
  */
 package hola;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,13 @@ public class ControladorInicial {
     public @ResponseBody String hola(){
         
         return "Bienvenido a mi primer servicios con spring";
+    }
+    
+    @RequestMapping(value="/resultados-json", method=RequestMethod.GET, headers={"Accept=application/json"})
+    public @ResponseBody String respuesta()throws Exception{
+       ObjectMapper maper=new ObjectMapper();
+       String respuesta=maper.writeValueAsString(GenerarEvaluaciones.obtenerEvaluaciones());
+       return respuesta;
     }
     
    @RequestMapping(value="/resultados", method=RequestMethod.GET)
