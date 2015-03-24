@@ -3,6 +3,8 @@
   <persistence-unit name="com.jc.basedatos_maven-boot_jar_1PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>hola.Pelicula</class>
+    <class>hola.Direccion</class>
+    <class>hola.Cliente</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
