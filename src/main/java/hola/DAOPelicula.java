@@ -5,6 +5,7 @@
  */
 package hola;
 
+import java.util.ArrayList;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,13 +21,13 @@ public class DAOPelicula {
     private static Session sesion;
    private static Transaction tranza;
    
-   private static void obtenerSesion(){
+   private synchronized static void obtenerSesion(){
          fac=HibernateUtilidades.getSessionFactory();
         sesion=fac.openSession();
         tranza=sesion.beginTransaction();
    }
    
-   private static void cerrarSesion(){
+   private synchronized static void cerrarSesion(){
        tranza.commit();
       sesion.close();
    }
@@ -47,6 +48,28 @@ public class DAOPelicula {
   p= (Pelicula) cricri.add(Restrictions.idEq(id)).uniqueResult();
       cerrarSesion();
       return p;
+    }
+    
+    public static ArrayList<Pelicula> buscarTodos()throws Exception{
+        obtenerSesion();
+        ArrayList<Pelicula> peliculas=new ArrayList<Pelicula>();
+    Criteria cricri=    sesion.createCriteria(Pelicula.class);
+   peliculas=  (ArrayList<Pelicula>) cricri.list();
+   cerrarSesion();
+  
+    return peliculas;
+    }
+    
+    public static void actualizar(Pelicula peli)throws Exception{
+        obtenerSesion(); 
+        sesion.update(peli);
+        cerrarSesion();
+    }
+    
+    public static void borrar(Pelicula peli) throws Exception{
+        obtenerSesion();
+        sesion.delete(peli);
+        cerrarSesion();
     }
     
 }
