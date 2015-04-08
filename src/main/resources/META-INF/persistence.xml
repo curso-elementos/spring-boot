@@ -5,6 +5,7 @@
     <class>hola.Pelicula</class>
     <class>hola.Direccion</class>
     <class>hola.Cliente</class>
+    <class>hola.Usuario</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
