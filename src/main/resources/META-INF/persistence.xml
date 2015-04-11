@@ -6,6 +6,8 @@
     <class>hola.Direccion</class>
     <class>hola.Cliente</class>
     <class>hola.Usuario</class>
+    <class>hola.Vuelo</class>
+    <class>hola.Avion</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
