@@ -7,6 +7,7 @@ package hola;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.stereotype.Controller;
@@ -23,13 +24,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ControladorUsuario {
+ 
+  @RequestMapping(value="/mensaje", method=RequestMethod.GET, headers={"Accept=text/html"})  
+  @ResponseBody String mensaje(){
+      
+      return "Hola desde spring!!";
+  }
+    
     
  @RequestMapping(value="/usuario", method=RequestMethod.GET,
-         headers={"Accept=text/html"})
- @ResponseBody String guardar(){
-     
-     String mensaje="Registro guardado con exito";
-     return mensaje;
+         headers={"Accept=application/json"})
+ @ResponseBody String guardar()throws Exception{
+     ArrayList<Usuario> usuarios=new ArrayList<Usuario>();
+    usuarios= DAOUsuario.buscarTodos();
+    ObjectMapper maper=new ObjectMapper();
+     return maper.writeValueAsString(usuarios); 
  }
  
  @RequestMapping(value="/usuario", method=RequestMethod.POST, headers={"Accept=application/json"})
