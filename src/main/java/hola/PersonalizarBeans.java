@@ -17,7 +17,7 @@ public class PersonalizarBeans implements EmbeddedServletContainerCustomizer {
 
     @Override
     public void customize(ConfigurableEmbeddedServletContainer container) {
-        container.setPort(9000);
+        container.setPort(8093);
     }
 
 }
