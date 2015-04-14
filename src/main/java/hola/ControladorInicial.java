@@ -8,8 +8,10 @@ package hola;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
@@ -28,6 +30,18 @@ public class ControladorInicial {
        ObjectMapper maper=new ObjectMapper();
        String respuesta=maper.writeValueAsString(GenerarEvaluaciones.obtenerEvaluaciones());
        return respuesta;
+    }
+    
+    @RequestMapping(value="/pelicula", method=RequestMethod.GET)
+    public String guardar(@ModelAttribute Pelicula pelicula, Model model){
+        String mensaje="Bienvenido soquete";
+        if(pelicula.getTitulo()==null)mensaje="NO diste tu nombre";
+        else{
+            
+        }
+        model.addAttribute("mensaje", mensaje);
+        
+        return "peliculas";
     }
     
    @RequestMapping(value="/resultados", method=RequestMethod.GET)

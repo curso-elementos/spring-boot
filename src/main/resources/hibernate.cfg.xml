@@ -6,9 +6,13 @@
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">root</property>
    
     <mapping class="hola.Pelicula"></mapping>
     <mapping class="hola.Cliente"></mapping>
     <mapping class="hola.Direccion"></mapping>
+    <mapping class="hola.Avion"></mapping>
+    <mapping class="hola.Vuelo"></mapping>
+    <mapping class="hola.Usuario"></mapping>
   </session-factory>
 </hibernate-configuration>

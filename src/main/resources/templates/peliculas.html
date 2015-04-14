@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://wwww.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <div>Bienvenidos a SPRING</div>
+     <form action="#" th:object="${pelicula}" th:action="@{/pelicula}"  method="get">
+         <input type="text" th:field="*{sinopsis}" />
+         <input type="text" th:field="*{titulo}" />
+     <input type="submit" value="emviar" />
+     <p th:text="${mensaje}">Introduce los datos</p>
+</form>
+    </body>
+</html>

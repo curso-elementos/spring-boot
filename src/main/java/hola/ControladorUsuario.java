@@ -5,7 +5,12 @@
  */
 package hola;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,9 +28,32 @@ public class ControladorUsuario {
          headers={"Accept=text/html"})
  @ResponseBody String guardar(){
      
-     String mensaje="REgistro guardado con exito";
+     String mensaje="Registro guardado con exito";
      return mensaje;
  }
  
+ @RequestMapping(value="/usuario", method=RequestMethod.POST, headers={"Accept=application/json"})
+ @ResponseBody String guardar(@RequestBody String json)throws Exception{
+      System.out.println("<<<<<<<<<Se ha recibido el json"+json);
+       Map<String,String> map = new HashMap<String,String>();
+	ObjectMapper mapper = new ObjectMapper();
+ 
+//Transformamos el json
+		map = mapper.readValue(json, 
+		    new TypeReference<HashMap<String,String>>(){});
+               int edad=Integer.parseInt(map.get("edad"));
+               float sueldo=Float.parseFloat(map.get("sueldo"));
+               String nombre=map.get("nombre");
+              //AJUSTAMOS los campos veniudos de JSON al objeto a guardarse  
+                Usuario u =new Usuario();
+                u.setEdad(edad);
+                u.setNombre(nombre);
+                u.setSueldo(sueldo);
+              //Guardamos el objeto
+            DAOUsuario.guardar(u);
+             
+      
+      return "Se guardo con nombre "+nombre;
+ } 
     
 }
