@@ -36,7 +36,7 @@ public class Aplicacion {
                u.setSueldo(300f);
                u.setEdad(40);
         try {
-            DAOUsuario.guardar(u);
+   
         } catch (Exception ex) {
             System.out.println("Elgo malo paso"+ex);
         }

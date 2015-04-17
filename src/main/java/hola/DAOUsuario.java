@@ -35,13 +35,13 @@ public class DAOUsuario {
    
    //Metodo para guardar
     
-    public static void guardar(Usuario p)throws Exception{
+    public synchronized  void guardar(Usuario p)throws Exception{
      obtenerSesion();
     sesion.save(p);
      cerrarSesion();
     }
     
-    public static Usuario buscarPorId(Integer id)throws Exception{
+    public synchronized  Usuario buscarPorId(Integer id)throws Exception{
         obtenerSesion();
     Usuario p=new Usuario();
     Criteria cricri=sesion.createCriteria(Usuario.class);
@@ -51,7 +51,7 @@ public class DAOUsuario {
       return p;
     }
     
-    public static ArrayList<Usuario> buscarTodos()throws Exception{
+    public synchronized  ArrayList<Usuario> buscarTodos()throws Exception{
         obtenerSesion();
         ArrayList<Usuario> peliculas=new ArrayList<Usuario>();
     Criteria cricri=    sesion.createCriteria(Usuario.class);
@@ -61,13 +61,13 @@ public class DAOUsuario {
     return peliculas;
     }
     
-    public static void actualizar(Usuario peli)throws Exception{
+    public synchronized void actualizar(Usuario peli)throws Exception{
         obtenerSesion(); 
         sesion.update(peli);
         cerrarSesion();
     }
     
-    public static void borrar(Usuario peli) throws Exception{
+    public synchronized void borrar(Usuario peli) throws Exception{
         obtenerSesion();
         sesion.delete(peli);
         cerrarSesion();

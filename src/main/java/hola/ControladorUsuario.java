@@ -36,13 +36,14 @@ public class ControladorUsuario {
          headers={"Accept=application/json"})
  @ResponseBody String guardar()throws Exception{
      ArrayList<Usuario> usuarios=new ArrayList<Usuario>();
-    usuarios= DAOUsuario.buscarTodos();
+     DAOUsuario dao=new DAOUsuario();
+    usuarios= dao.buscarTodos();
     ObjectMapper maper=new ObjectMapper();
      return maper.writeValueAsString(usuarios); 
  }
  
- @RequestMapping(value="/usuario", method=RequestMethod.POST, headers={"Accept=application/json"})
- @ResponseBody String guardar(@RequestBody String json)throws Exception{
+ @RequestMapping(value="/usuario", method=RequestMethod.PUT, headers={"Accept=application/json"})
+ @ResponseBody String actualizar(@RequestBody String json)throws Exception{
       System.out.println("<<<<<<<<<Se ha recibido el json"+json);
        Map<String,String> map = new HashMap<String,String>();
 	ObjectMapper mapper = new ObjectMapper();
@@ -52,17 +53,49 @@ public class ControladorUsuario {
 		    new TypeReference<HashMap<String,String>>(){});
                int edad=Integer.parseInt(map.get("edad"));
                float sueldo=Float.parseFloat(map.get("sueldo"));
+               int id=Integer.parseInt(map.get("idUsuario"));
+               
                String nombre=map.get("nombre");
               //AJUSTAMOS los campos veniudos de JSON al objeto a guardarse  
                 Usuario u =new Usuario();
                 u.setEdad(edad);
                 u.setNombre(nombre);
                 u.setSueldo(sueldo);
+                u.setIdUsuario(id);
               //Guardamos el objeto
-            DAOUsuario.guardar(u);
+                DAOUsuario dao=new DAOUsuario();
+            dao.actualizar(u);
              
       
-      return "Se guardo con nombre "+nombre;
+      return "Se actualizo el usuario  "+nombre;
+ } 
+ 
+  @RequestMapping(value="/usuario", method=RequestMethod.POST, headers={"Accept=application/json"})
+ @ResponseBody String guardar(@RequestBody String json)throws Exception{
+      System.out.println("<<<<<<<<<Se ha recibido el json pára guardar"+json);
+       Map<String,String> map = new HashMap<String,String>();
+	ObjectMapper mapper = new ObjectMapper();
+ 
+//Transformamos el json
+		map = mapper.readValue(json, 
+		    new TypeReference<HashMap<String,String>>(){});
+               int edad=Integer.parseInt(map.get("edad"));
+               float sueldo=Float.parseFloat(map.get("sueldo"));
+           
+               
+               String nombre=map.get("nombre");
+              //AJUSTAMOS los campos veniudos de JSON al objeto a guardarse  
+                Usuario u =new Usuario();
+                u.setEdad(edad);
+                u.setNombre(nombre);
+                u.setSueldo(sueldo);
+          
+              //Guardamos el objeto
+                DAOUsuario dao=new DAOUsuario();
+            dao.guardar(u);
+             
+      
+      return "Se actualizo el usuario  "+nombre;
  } 
     
 }
